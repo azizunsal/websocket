@@ -5,9 +5,13 @@ allprojects {
 
 // instructions for each sub projects
 subprojects {
-	apply plugin: 'java'
-	apply plugin: 'idea'
-	repositories {
+    apply plugin: 'java'
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    apply plugin: 'idea'
+
+    repositories {
 		jcenter()
 		mavenCentral()
 	}
