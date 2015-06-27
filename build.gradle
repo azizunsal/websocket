@@ -1,7 +1,9 @@
+// instructions for all projects
 allprojects {
 
 }
 
+// instructions for each sub projects
 subprojects {
 	apply plugin: 'java'
 	apply plugin: 'idea'
@@ -9,10 +11,17 @@ subprojects {
 		jcenter()
 		mavenCentral()
 	}
+	dependencies {
+		compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.+'
+		compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.+'
+	}
 }
 
 project(':server') {
 
+    dependencies {
+        compile'javax.websocket:javax.websocket-api:1.1'
+    }
 }
 
 project(':client') {
