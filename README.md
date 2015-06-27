@@ -3,7 +3,7 @@
 ## For the server
 <pre><code>
 gradle clean server:build
-cp server/build/libs/server.war <Jetty webapps directory>
+cp server/build/libs/server.war to_Jetty_webapps_directory
 </code></pre>
 
 ## For the client
