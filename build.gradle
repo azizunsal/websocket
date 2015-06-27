@@ -12,15 +12,15 @@ subprojects {
     apply plugin: 'idea'
 
     repositories {
-		jcenter()
-		mavenCentral()
-	}
+        jcenter()
+        mavenCentral()
+    }
 
     dependencies {
-		compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.+'
-		compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.+'
+        compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.+'
+        compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.+'
         compile group: 'javax.websocket', name: 'javax.websocket-api', version: '1.1'
-	}
+    }
 }
 
 project(':server') {
@@ -31,7 +31,7 @@ project(':client') {
     task fatJar(type: Jar) {
         manifest {
             attributes 'Implementation-Title': 'Standalone WebSocket Client',
-                        'Main-Class': 'au.websocket.demo.client.TestClientEndpointApp'
+                    'Main-Class': 'au.websocket.demo.client.TestClientEndpointApp'
         }
         baseName = project.name + '-all'
         from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
