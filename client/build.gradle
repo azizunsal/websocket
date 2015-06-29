@@ -1,0 +1,14 @@
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'Implementation-Title': 'Standalone WebSocket Client',
+                'Main-Class': 'au.websocket.demo.client.TestClientEndpointApp'
+    }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
+dependencies {
+    compile 'org.glassfish.tyrus.bundles:tyrus-standalone-client:1.10'
+    compile project(':common')
+}

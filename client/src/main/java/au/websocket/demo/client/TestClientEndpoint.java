@@ -1,11 +1,14 @@
 package au.websocket.demo.client;
 
+
+import au.websocket.demo.common.MsgPackUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.websocket.*;
 import java.io.IOException;
 import java.net.URI;
+import java.nio.ByteBuffer;
 
 /**
  * Created by azizunsal on 27/06/15.
@@ -38,10 +41,14 @@ public class TestClientEndpoint {
     }
 
     @OnMessage
-    public void onMessage(String message) {
+    public void onMessage(ByteBuffer message) {
         logger.info("OnMessage:: message is {}", message);
         if (messageHandler != null) {
-            messageHandler.handleMessage(message);
+            try {
+                messageHandler.handleMessage(message);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -59,7 +66,8 @@ public class TestClientEndpoint {
     public void sendMessage(String message) {
         logger.info("Sending texts is {}", message);
         try {
-            userSession.getBasicRemote().sendText(message);
+            //userSession.getBasicRemote().sendText(message);
+            userSession.getBasicRemote().sendBinary(MsgPackUtil.preparePayload(message));
         } catch (IOException e) {
             logger.error("An error has been occurred while sending message to the server.", e);
             closeSession();
@@ -72,7 +80,7 @@ public class TestClientEndpoint {
     }
 
     public static interface MessageHandler {
-        public void handleMessage(String message);
+        public void handleMessage(ByteBuffer message) throws IOException;
     }
 
     public void closeSession() {
@@ -84,4 +92,5 @@ public class TestClientEndpoint {
             logger.error("An error has been occurred while closing the session.", e);
         }
     }
+
 }
