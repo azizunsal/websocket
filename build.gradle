@@ -22,3 +22,7 @@ subprojects {
         compile group: 'org.msgpack', name: 'msgpack', version:'0.6.12'
     }
 }
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.4'
+}
