@@ -12,3 +12,7 @@ dependencies {
     compile 'org.glassfish.tyrus.bundles:tyrus-standalone-client:1.10'
     compile project(':common')
 }
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.4'
+}

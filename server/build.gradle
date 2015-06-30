@@ -2,3 +2,6 @@ apply plugin: 'war'
 dependencies {
     compile project(':common')
 }
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.4'
+}
